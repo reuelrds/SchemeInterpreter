@@ -29,25 +29,9 @@ from Tree import Cons
 from Tree import TreeBuilder
 
 from Tree import Unspecific
+from Tree import Void
 
-# TODO: Move the None_ class to a separate class
 # TODO: Update Nil and BoolLit classes to use __new__
-
-
-class None_(Node):
-    """A Node which implements print method to print nothing"""
-
-    _instance = None
-
-    def __new__(cls, *args, **kwargs):
-
-        if cls._instance is None:
-            cls._instance = super().__new__(cls, *args, **kwargs)
-
-        return cls._instance
-
-    def print(self, n, p=False):
-        pass
 
 
 class BuiltIn(Node):
@@ -101,7 +85,7 @@ class BuiltIn(Node):
 
         else:
             self._error("Unsupported Number of arguments")
-            return None_()
+            return Void()
 
         # The easiest way to implement BuiltIn.apply is as an
         # if-then-else chain testing for the different names of
@@ -149,7 +133,7 @@ class BuiltIn(Node):
 
                 sys.stdout.write("#{End-of-file}")
                 sys.stdout.write("\n")
-                return None_()
+                return Void()
 
         elif self._symbol_name == "interaction-environment":
             return BuiltIn.env
@@ -157,7 +141,7 @@ class BuiltIn(Node):
         else:
             self._error(
                 f"Apply method is not defined for `{self._symbol_name}`")
-            return None_()
+            return Void()
 
     def _apply_unary(self, args):
 
@@ -218,12 +202,12 @@ class BuiltIn(Node):
                     root = parser.parseExp()
             except IOError:
                 self._error("could not find file " + filename)
-            return None_()  # or Unspecific.getInstance()
+            return Void()  # or Unspecific.getInstance()
 
         else:
             self._error(
                 f"Apply method is not defined for `{self._symbol_name}`")
-            return None_()
+            return Void()
 
     def _apply_binary(self, args):
 
@@ -245,19 +229,19 @@ class BuiltIn(Node):
                 return arg1.eval(arg2)
             else:
                 self._error(f"Invalid Environment - `{arg2}`")
-                return None_()
+                return Void()
 
         elif self._symbol_name[0] == "b":
 
             if not arg1.isNumber():
 
                 self._error(f"`{arg1}` is not a Number")
-                return None_()
+                return Void()
 
             if not arg2.isNumber():
 
                 self._error(f"`{arg2}` is not a Number")
-                return None_()
+                return Void()
 
             return self._binary_arithmetic(arg1.intVal, arg2.intVal)
 
@@ -279,7 +263,7 @@ class BuiltIn(Node):
         else:
             self._error(
                 f"Apply method is not defined for `{self._symbol_name}`")
-            return None_()
+            return Void()
 
     def _binary_arithmetic(self, arg1, arg2):
 
@@ -304,7 +288,7 @@ class BuiltIn(Node):
         else:
             self._error(
                 f"Apply method is not defined for `{self._symbol_name}`")
-            return None_()
+            return Void()
 
     def _check_arg_node_type(self, arg1):
 
@@ -326,4 +310,4 @@ class BuiltIn(Node):
         else:
             self._error(
                 f"Apply method is not defined for `{self._symbol_name}`")
-            return None_()
+            return Void()
