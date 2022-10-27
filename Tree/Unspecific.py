@@ -1,8 +1,9 @@
+import sys
 from Tree import Node
 
 
-class Void(Node):
-    """A Node which implements print method to print nothing"""
+class Unspecific(Node):
+    """A Node which implements print method to print #{Unspecific}"""
 
     _instance = None
 
@@ -14,4 +15,4 @@ class Void(Node):
         return cls._instance
 
     def print(self, n, p=False):
-        pass
+        sys.stdout.write(r"#{Unspecific}")
