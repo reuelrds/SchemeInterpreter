@@ -39,13 +39,15 @@ from Tree import Ident
 from Tree import Nil
 from Tree import Cons
 from Tree import BuiltIn
+from Tree import Void
+
 
 class Environment(Node):
     # An Environment is implemented like a Cons node, in which
     # every list element (every frame) is an association list.
     # Instead of Nil(), we use None to terminate the list.
 
-    def __init__(self, e = None):
+    def __init__(self, e=None):
         self.frame = Nil.getInstance()  # the innermost scope, an assoc list
         self.env = e                    # the enclosing environment
 
@@ -104,6 +106,11 @@ class Environment(Node):
         else:
             # set the value of the list we got from find()
             val.setCar(value)
+
+    def eval(self, env):
+        self._error("Environment.eval not yet implemented")
+        return Void()
+
 
 if __name__ == "__main__":
     env = Environment()

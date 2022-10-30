@@ -3,6 +3,7 @@
 from Tree import Node
 from Print import Printer
 
+
 class Ident(Node):
     def __init__(self, n):
         self.name = n
@@ -15,6 +16,10 @@ class Ident(Node):
 
     def isSymbol(self):
         return True
+
+    def eval(self, env):
+        return env.lookup(self)
+
 
 if __name__ == "__main__":
     id = Ident("foo")

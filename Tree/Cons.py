@@ -3,6 +3,7 @@
 from Tree import Node
 from Tree import Ident
 
+
 class Cons(Node):
     util = None
 
@@ -44,6 +45,10 @@ class Cons(Node):
 
     def isPair(self):
         return True
+
+    def eval(self, env):
+        self.form.eval(self, env)
+
 
 if __name__ == "__main__":
     c = Cons(Ident("Hello"), Ident("World"))

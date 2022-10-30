@@ -13,6 +13,7 @@ import sys
 from Tree import Node
 from Tree import StrLit
 from Tree import Environment
+from Tree import Void
 
 class Closure(Node):
     util = None
@@ -51,3 +52,8 @@ class Closure(Node):
     # BuiltIn and Closure.
     def apply(self, args):
         return StrLit("Error: Closure.apply not yet implemented")
+
+    def eval(self, env):
+        self._error("Environment.eval not yet implemented")
+        return Void()
+

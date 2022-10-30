@@ -1,7 +1,9 @@
 # Nil -- Parse tree node class for representing the empty list
 
 from Tree import Node
+from Tree import Void
 from Print import Printer
+
 
 class Nil(Node):
     __instance = None
@@ -23,6 +25,11 @@ class Nil(Node):
 
     def isNull(self):
         return True
+
+    def eval(self, env):
+        self._error("Nill.eval not yet implemented")
+        return Void()
+
 
 if __name__ == "__main__":
     n = Nil.getInstance()

@@ -4,6 +4,7 @@ import sys
 from Tree import Node
 from Print import Printer
 
+
 class StrLit(Node):
     def __init__(self, s):
         self.strVal = s
@@ -13,6 +14,10 @@ class StrLit(Node):
 
     def isString(self):
         return True
+
+    def eval(self, env):
+        return self
+
 
 if __name__ == "__main__":
     id = StrLit("foo")

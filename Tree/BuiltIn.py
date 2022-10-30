@@ -67,6 +67,10 @@ class BuiltIn(Node):
             sys.stdout.write('\n')
             sys.stdout.flush()
 
+    def eval(self, env):
+        self._error("BuiltIn.eval not yet implemented")
+        return Void()
+
     # TODO: The method apply() should be defined in class Node
     # to report an error.  It should be overridden only in classes
     # BuiltIn and Closure.
