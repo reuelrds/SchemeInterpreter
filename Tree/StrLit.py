@@ -15,6 +15,9 @@ class StrLit(Node):
     def isString(self):
         return True
 
+    def getStrVal(self):
+        return self.strVal
+
     def eval(self, env):
         return self
 
