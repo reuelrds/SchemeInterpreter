@@ -47,7 +47,7 @@ class Cons(Node):
         return True
 
     def eval(self, env):
-        self.form.eval(self, env)
+        return self.form.eval(self, env)
 
 
 if __name__ == "__main__":
