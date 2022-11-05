@@ -10,3 +10,13 @@ class Regular(Special):
 
     def print(self, t, n, p):
         Printer.printRegular(t, n, p)
+
+    def eval(self, exp, env):
+        if Special.util.length(exp) < 1:
+            self._error("expression not valid")
+            return Nil.getInstance()
+        
+        fcn = exp.getCar().eval(env)
+        arguments = Special.util.mapeval(exp.getCdr(), env)
+
+        return fcn.apply(arguments)

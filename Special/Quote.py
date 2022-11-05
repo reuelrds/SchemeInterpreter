@@ -10,3 +10,10 @@ class Quote(Special):
 
     def print(self, t, n, p):
         Printer.printQuote(t, n, p)
+
+    def eval(self, exp, env):
+        if Special.util.length(exp) != 2:
+            self._error("expression not valid")
+            return Nil.getInstance()
+
+        return exp.getCdr().getCar()
