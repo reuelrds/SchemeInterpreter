@@ -51,7 +51,31 @@ class Closure(Node):
     # to report an error.  It should be overridden only in classes
     # BuiltIn and Closure.
     def apply(self, args):
-        return StrLit("Error: Closure.apply not yet implemented")
+        varList = self.fun.getCdr().getCar()
+        body = self.fun.getCdr().getCdr()
+        newEnv = Environment(self.env)
+        n = Closure.util.length(varList)
+
+        if varList.isNull() and args.isNull():
+            pass
+        
+        elif Closure.util.length(args) != n:
+            self._error("number of arguments don't match")
+
+        elif varList.isSymbol():
+            newEnv.define(varList, args)
+        
+        i = 1
+
+        while i <= n:
+            var = varList.getCar()
+            val = args.getCar()
+            newEnv.define(var, val)
+
+            varList = varList.getCdr()
+            i+=1
+            
+        return Closure.util.begin(body, newEnv)
 
     def eval(self, env):
         self._error("Environment.eval not yet implemented")

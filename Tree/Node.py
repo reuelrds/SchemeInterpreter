@@ -75,6 +75,11 @@ class Node(ABC):
         self._error("Node.eval not yet implemented")
         return Nil.getInstance()
 
+    def apply(self, args):
+        from Tree import Nil
+        self._error("Error: Node.apply not yet implemented")
+        return Nil.getInstance()
+
     def _error(self, msg):
         sys.stderr.write("Error: " + msg + "\n")
         sys.stderr.flush()
