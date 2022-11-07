@@ -47,6 +47,16 @@ class Environment(Node):
     # every list element (every frame) is an association list.
     # Instead of Nil(), we use None to terminate the list.
 
+    @classmethod
+    def populateEnv(cls, env):
+        builtIns = ["symbol?", "number?", "b+", "b-", "b*", "b/", "b=", "b<", "car", "cdr", 
+                    "cons", "set-car!", "set-cdr!", "null?", "pair?", "eq?", "procedure?", 
+                    "read", "write", "display", "newline", "eval", "apply", "interaction-environment", "load"]
+
+        for name in builtIns:
+            id = Ident(name)
+            env.define(id, BuiltIn(id))
+
     def __init__(self, e=None):
         self.frame = Nil.getInstance()  # the innermost scope, an assoc list
         self.env = e                    # the enclosing environment
