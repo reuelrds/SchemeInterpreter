@@ -9,6 +9,7 @@ from Tree import Cons
 # hierarchy.  We'll discuss some of them in class.  The easiest solution
 # is to not add any fields and to use empty constructors.
 
+
 class Special(ABC):
     util = None
 
@@ -18,6 +19,10 @@ class Special(ABC):
 
     @abstractmethod
     def print(self, t, n, p):
+        pass
+
+    @abstractmethod
+    def eval(self, exp, env):
         pass
 
     def _error(self, msg):
