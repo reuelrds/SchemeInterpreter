@@ -28,7 +28,7 @@ class Nil(Node):
 
     def eval(self, env):
         self._error("Nill.eval not yet implemented")
-        return Void()
+        return Void.Void.getInstance()
 
 
 if __name__ == "__main__":
