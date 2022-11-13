@@ -35,6 +35,9 @@ class Closure(Node):
 
     def isProcedure(self):
         return True
+    
+    def parameter_count(self):
+        return Closure.util.length(self.fun.getCdr().getCar())
 
     def print(self, n, p=False):
         for _ in range(n):
