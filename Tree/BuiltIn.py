@@ -162,9 +162,7 @@ class BuiltIn(Node):
 
         elif self._symbol_name == "write":
 
-            # TODO: Check if the indentation is correct
-
-            arg1.print(0)
+            arg1.print(-1)
             return Unspecific.getInstance()
 
         elif self._symbol_name == "display":
@@ -179,8 +177,7 @@ class BuiltIn(Node):
 
             with io.StringIO() as buf, contextlib.redirect_stdout(buf):
 
-                # TODO: Check if the indentation is correct
-                arg1.print(0)
+                arg1.print(-1)
                 output = buf.getvalue()
 
             output = re.sub(r"\"", r"", output.strip())
