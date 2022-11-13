@@ -14,7 +14,7 @@ class Begin(Special):
 
     def eval(self, exp, env):
 
-        exp_length = Special.util.length()
+        exp_length = Special.util.length(exp)
 
         if exp_length < 2:
             self._error('invalid expression')
