@@ -24,12 +24,12 @@ class Define(Special):
             return Nil.getInstance()
 
         declaration = exp.getCdr().getCar()
-        body = exp.getCdr().getCdr().getCar()
+        body = exp.getCdr().getCdr()
 
         # Variable Definition
         if not declaration.isPair():
 
-            env.define(declaration, body.eval(env))
+            env.define(declaration, body.getCar().eval(env))
             return Nil.getInstance()
 
         # Function Definition
@@ -37,18 +37,15 @@ class Define(Special):
 
             variable = declaration.getCar()
 
-            if declaration.getCdr().isPair():
-                formal = declaration.getCdr().getCar()
-            else:
-                formal = declaration.getCdr()
+            formal = declaration.getCdr()
 
             lambd = Cons(
                 Ident("lambda"),
-                Cons(
-                    Cons(formal, Nil.getInstance()),
-                    Cons(body, Nil.getInstance())
-                )
+                Cons(formal, body)
             )
+            # lambd.print(0)
             env.define(variable, lambd.eval(env))
 
             return Nil.getInstance()
+        
+    

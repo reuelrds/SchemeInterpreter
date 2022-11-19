@@ -15,6 +15,7 @@ from Tree import StrLit
 from Tree import Environment
 from Tree import Void
 
+
 class Closure(Node):
     util = None
 
@@ -25,7 +26,7 @@ class Closure(Node):
     def __init__(self, f, e):
         self.fun = f                    # a lambda expression
         self.env = e                    # the environment in which
-                                        # the function was defined
+        # the function was defined
 
     def getFun(self):
         return self.fun
@@ -35,7 +36,7 @@ class Closure(Node):
 
     def isProcedure(self):
         return True
-    
+
     def parameter_count(self):
         return Closure.util.length(self.fun.getCdr().getCar())
 
@@ -59,28 +60,46 @@ class Closure(Node):
         newEnv = Environment(self.env)
         n = Closure.util.length(varList)
 
-        if varList.isNull() and args.isNull():
-            pass
-        
-        elif Closure.util.length(args) != n:
-            self._error("number of arguments don't match")
+        # if varList.isNull() and args.isNull():
+        #     pass
 
-        elif varList.isSymbol():
-            newEnv.define(varList, args)
-        
-        i = 1
+        # elif Closure.util.length(args) != n:
+        #     self._error("number of arguments don't match")
 
-        while i <= n:
-            var = varList.getCar()
-            val = args.getCar()
-            newEnv.define(var, val)
+        # elif varList.isSymbol():
+        #     newEnv.define(varList, args)
 
-            varList = varList.getCdr()
-            i+=1
-            
+        # i = 1
+
+        # while i <= n:
+        #     var = varList.getCar()
+        #     val = args.getCar()
+        #     newEnv.define(var, val)
+
+        #     varList = varList.getCdr()
+        #     i+=1
+
+        while True:
+
+            if varList.isNull() and args.isNull():
+                break
+
+            if varList.isSymbol():
+                newEnv.define(varList, args)
+
+            if varList.isPair() and args.isPair():
+                val = args.getCar()
+                var = varList.getCar()
+
+                newEnv.define(var, val)
+
+                varList = varList.getCdr()
+                args = args.getCdr()
+            else:
+                break
+
         return Closure.util.begin(body, newEnv)
 
     def eval(self, env):
         self._error("Environment.eval not yet implemented")
         return Void()
-
