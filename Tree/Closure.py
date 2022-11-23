@@ -79,20 +79,19 @@ class Closure(Node):
         #     varList = varList.getCdr()
         #     i+=1
 
-        while True:
+        while not (varList.isNull() and args.isNull()):
 
-            if varList.isNull() and args.isNull():
-                break
 
             if varList.isSymbol():
                 newEnv.define(varList, args)
 
-            if varList.isPair() and args.isPair():
+            elif varList.isPair() and args.isPair():
                 val = args.getCar()
                 var = varList.getCar()
 
                 newEnv.define(var, val)
 
+            if varList.isPair() and args.isPair():
                 varList = varList.getCdr()
                 args = args.getCdr()
             else:
