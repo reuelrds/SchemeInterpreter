@@ -1,6 +1,6 @@
 # Regular -- Parse tree node strategy for printing regular lists
 
-from Tree import Nil
+from Tree import Void
 from Print import Printer
 from Special import Special
 
@@ -14,7 +14,7 @@ class Regular(Special):
     def eval(self, exp, env):
         if Special.util.length(exp) < 1:
             self._error("expression not valid")
-            return Nil.getInstance()
+            return Void.getInstance()
         
         fcn = exp.getCar().eval(env)
         arguments = Special.util.mapeval(exp.getCdr(), env)

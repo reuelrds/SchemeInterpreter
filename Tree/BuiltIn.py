@@ -31,9 +31,6 @@ from Tree import TreeBuilder
 from Tree import Unspecific
 from Tree import Void
 
-# TODO: Update Nil and BoolLit classes to use __new__
-
-
 class BuiltIn(Node):
     env = None
     util = None
@@ -254,10 +251,6 @@ class BuiltIn(Node):
             arg1.setCdr(arg2)
             return Unspecific.getInstance()
 
-        # TODO: Check if eq? implementation is correct.
-        #       Should we just check if both the objects are same? Or
-        #       Sdould we check if the both the objects have same
-        #       structure (i.e. Nodes with same identifiers and literals)?
         elif self._symbol_name == "eq?":
             return BoolLit.getInstance(arg1 == arg2)
 

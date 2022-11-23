@@ -1,6 +1,6 @@
 # Begin -- Parse tree node strategy for printing the special form begin
 
-from Tree import Nil
+from Tree import Void
 from Print import Printer
 from Special import Special
 
@@ -18,6 +18,6 @@ class Begin(Special):
 
         if exp_length < 2:
             self._error('invalid expression')
-            return Nil.getInstance()
+            return Void.getInstance()
         
         return Special.util.begin(exp.getCdr(), env)

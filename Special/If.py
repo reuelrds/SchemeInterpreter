@@ -1,7 +1,7 @@
 # If -- Parse tree node strategy for printing the special form if
 
 from Tree import BoolLit
-from Tree import Nil
+from Tree import Void
 from Tree import Unspecific
 from Print import Printer
 from Special import Special
@@ -20,7 +20,7 @@ class If(Special):
 
         if exp_length < 3 or exp_length > 4:
             self._error('invalid expression')
-            return Nil.getInstance()
+            return Void.getInstance()
 
         else:
 

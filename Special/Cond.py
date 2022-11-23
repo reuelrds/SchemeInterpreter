@@ -1,7 +1,7 @@
 # Cond -- Parse tree node strategy for printing the special form cond
 
 from Tree import BoolLit
-from Tree import Nil
+from Tree import Void
 from Tree import Unspecific
 from Print import Printer
 from Special import Special
@@ -25,7 +25,7 @@ class Cond(Special):
                 return expression_value.apply(predicate.eval(env))
             else:
                 self._error("Return Value is not a procedure")
-                return Nil.getInstance()
+                return Void.getInstance()
 
         else:
 
@@ -44,7 +44,7 @@ class Cond(Special):
 
         if clause_count < 1:
             self._error("Invalid Cond Expression")
-            return Nil.getInstance()
+            return Void.getInstance()
 
         for _ in range(clause_count - 1):
 

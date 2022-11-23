@@ -3,7 +3,7 @@
 from Tree import Ident
 from Tree import Nil
 from Tree import Cons
-#from Tree import Void
+from Tree import Void
 from Print import Printer
 from Special import Special
 
@@ -21,7 +21,7 @@ class Define(Special):
 
         if exp_length < 3:
             self._error('invalid expression')
-            return Nil.getInstance()
+            return Void.getInstance()
 
         declaration = exp.getCdr().getCar()
         body = exp.getCdr().getCdr()
@@ -30,7 +30,7 @@ class Define(Special):
         if not declaration.isPair():
 
             env.define(declaration, body.getCar().eval(env))
-            return Nil.getInstance()
+            return Void.getInstance()
 
         # Function Definition
         elif declaration.isPair():
@@ -46,6 +46,6 @@ class Define(Special):
             # lambd.print(0)
             env.define(variable, lambd.eval(env))
 
-            return Nil.getInstance()
+            return Void.getInstance()
         
     

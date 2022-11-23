@@ -1,6 +1,6 @@
 # Set -- Parse tree node strategy for printing the special form set!
 
-from Tree import Nil
+from Tree import Void
 from Tree import Unspecific
 from Print import Printer
 from Special import Special
@@ -15,7 +15,7 @@ class Set(Special):
     def eval(self, exp, env):
         if Special.util.length(exp) != 3:
             self._error("expression not valid")
-            return Nil.getInstance()
+            return Void.getInstance()
         
         var = exp.getCdr().getCar()
         val = exp.getCdr().getCdr().getCar()

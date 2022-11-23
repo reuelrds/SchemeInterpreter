@@ -52,14 +52,14 @@ class Node(ABC):
     # in class Cons.  After setCar, a Cons cell needs to be `parsed' again
     # using parseList.
     def getCar(self):
-        from Tree import Nil
+        from Tree import Void
         self._error("argument of car is not a pair")
-        return Nil.getInstance()
+        return Void.getInstance()
 
     def getCdr(self):
-        from Tree import Nil
+        from Tree import Void
         self._error("argument of cdr is not a pair")
-        return Nil.getInstance()
+        return Void.getInstance()
 
     def setCar(self, a):
         self._error("argument of set-car! is not a pair")
@@ -71,14 +71,14 @@ class Node(ABC):
         return ""
 
     def eval(self, env):
-        from Tree import Nil
+        from Tree import Void
         self._error("Node.eval not yet implemented")
-        return Nil.getInstance()
+        return Void.getInstance()
 
     def apply(self, args):
-        from Tree import Nil
+        from Tree import Void
         self._error("Error: Node.apply not yet implemented")
-        return Nil.getInstance()
+        return Void.getInstance()
 
     def _error(self, msg):
         sys.stderr.write("Error: " + msg + "\n")
